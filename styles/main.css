@@ -67,7 +67,10 @@ h2 {
     border: rgba(201, 220, 255, 0.781) 1px solid;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 480px) {
+    .container {
+        width: 90%;
+    }
     #nav-bar li {
         display: list-item;
         /* padding-bottom: 15px; */
@@ -75,5 +78,11 @@ h2 {
     }
     .link-button {
         padding: 1px 8px;
+    }
+}
+
+@media only screen and (min-width:1920px) {
+    .container {
+        width: 70%;
     }
 }
