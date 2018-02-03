@@ -1,7 +1,8 @@
 ---
-layout: default
+layout: article
 title: Making Old Code Beautiful
 permalink: /articles/old-code-beautiful/
+image: /assets/beautiful_code/puzzle.jpg
 ---
 
 # Making Old Code Beautiful: Strings, Algorithm and Lambdas
@@ -12,7 +13,7 @@ At university I was given an assignment to create a program that encoded some te
 
 e.g. Using the cypher word “help” the word “world” becomes:
 
-[Image Placeholder]
+![Cypher]({{ "/assets/beautiful_code/text_encode.PNG" | absolute_url }})
 
 wnrjp
 
@@ -180,6 +181,8 @@ Because I used the algorithm header rather than write my own algorithms the code
 ## Performance
 
 Since the original program didn’t use any dynamic memory management, anything that used strings (which use dynamic allocation) would be slower. To test the speed of both the old application and the updated version I used [Google’s benchmark](https://github.com/google/benchmark) library.
+
+![Benchmark Graph]({{ "/assets/beautiful_code/performance.PNG" }})
 
 The graph shows that the compiler is better able to optimise the more modern C++ code making it comparable to the older code while still being more readable and maintainable.
 
