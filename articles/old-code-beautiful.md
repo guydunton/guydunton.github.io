@@ -3,6 +3,7 @@ layout: article
 title: Making Old Code Beautiful
 permalink: /articles/old-code-beautiful/
 image: /assets/beautiful_code/puzzle.jpg
+excert: Taking old C++ code and applying new techniques to improve it.
 ---
 
 # Making Old Code Beautiful: Strings, Algorithm and Lambdas
