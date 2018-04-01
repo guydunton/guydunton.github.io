@@ -7,3 +7,7 @@ This is my portfolio website
 2. Checkout the code
 3. Run command ```bundle install```
 4. Build the site ```bundle exec jekyll serve```
+
+## Markdown Guide
+
+https://daringfireball.net/projects/markdown/
