@@ -4,11 +4,9 @@ title: Articles
 ---
 <h2>Articles</h2>
 
-{% for page in site.pages %}
-    {% if page.layout == "article" %}
-        <hr>
-        <h3>{{ page.title }}. </h3>
-        <p>{{ page.excert }}</p>
-        <p><a href="{{page.url}}"><img class="previewImage" src="{{ page.image }}" alt="{{ page.title }}"><a></p>
-    {% endif %}
+{% for article in site.articles %}
+    <hr>
+    <h3>{{ article.title }}. </h3>
+    <p>{{ article.excert }}</p>
+    <p><a href="{{ article.url }}"><img class="previewImage" src="{{ article.image }}" alt="{{ article.title }}"><a></p>
 {% endfor %}

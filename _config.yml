@@ -2,3 +2,10 @@ markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: pygments
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/
+  articles:
+    output: true
+    permalink: /articles/:path/

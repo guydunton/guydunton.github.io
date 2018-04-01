@@ -4,12 +4,13 @@ title: Projects
 ---
 <section>
     <h2>Things I've done</h2>
-    <h3>Elm Sprite Editor</h3>
-    <p>
-        <b>Brief</b>
-    </p>
-    <p>This is a gameboy sprite editor written in Elm. 
-        <a href="{{ "/projects/elm-sprite-editor/" | relative_url }}">Link</a>
-    </p>
-    <br>
+
+    {% for project in site.projects %}
+        <hr>
+        <h3>{{ project.title }}</h3>
+        <p>
+            {{ project.excerpt }}
+            <a href="{{ project.url }}">Link</a>
+        </p>
+    {% endfor %}
 </section>
