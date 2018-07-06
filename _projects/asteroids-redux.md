@@ -6,9 +6,9 @@ excerpt: A remake of Asteroids, written in C++
 ---
 ## Asteroids Redux
 
-Asteroids Redux is a remake of the Atari classic game Asteroids. Written in C++ and using DirectX.
+Asteroids Redux is a remake of the Atari classic game Asteroids. Written in C++ and using DirectX. <a href="https://github.com/gdunton/asteroids-redux">Code available here</a>
 
-<a href="https://github.com/gdunton/asteroids-redux">Code available here</a>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qw1Vv8KV5q8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ### Original
 
