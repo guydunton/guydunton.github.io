@@ -3,6 +3,7 @@ layout: default
 title: Asteroids Redux
 permalink: /projects/asteroids-redux/
 excerpt: A remake of Asteroids, written in C++
+order: 2
 ---
 ## Asteroids Redux
 

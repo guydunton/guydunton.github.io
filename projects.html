@@ -5,7 +5,8 @@ title: Projects
 <section>
     <h2>Things I've done</h2>
 
-    {% for project in site.projects %}
+    {% assign sorted_pages = site.projects | sort:"order" %}
+    {% for project in sorted_pages %}
         <hr>
         <h3>{{ project.title }}</h3>
         <p>

@@ -3,6 +3,7 @@ layout: default
 title: Elm Sprite Editor
 permalink: /projects/elm-sprite-editor/
 excerpt: A sprite editor for Gameboy games, written for the web using Elm
+order: 1
 ---
 ## Elm Sprite Editor
 
