@@ -4,7 +4,8 @@ title: Articles
 ---
 <h2>Articles</h2>
 
-{% for article in site.articles %}
+{% assign sorted_articles = site.articles | sort:"order" | reverse %}
+{% for article in sorted_articles %}
     <hr>
     <h3>{{ article.title }}. </h3>
     <p>{{ article.excerpt }}</p>

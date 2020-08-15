@@ -22,14 +22,16 @@ a {
 
 .container {
   margin: auto;
-  width: 80%;
+  max-width: 1024px;
   overflow: hidden;
+  padding: 0 20px;
 }
 
 .center-image {
   margin: 0 auto;
   display: block;
   max-width: 700px;
+  width: 100%;
 }
 
 header h1 {
@@ -53,6 +55,12 @@ blockquote {
   padding: 0.4rem 0.8rem;
   background-color: #ecf7f9;
   border: 1px solid #81ddff;
+}
+
+code {
+  overflow-x: scroll;
+  margin: 0;
+  display: block;
 }
 
 .previewImage {
@@ -145,6 +153,10 @@ blockquote {
 
   .previewImage {
     max-width: 80%;
+  }
+
+  body {
+    font-size: 14.5px;
   }
 }
 

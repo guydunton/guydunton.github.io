@@ -4,6 +4,7 @@ title: The Life & Death of Rust Catch
 permalink: /articles/life-and-death-of-rust-catch/
 image: /assets/life_and_death_of_rust_catch/baseball_ball_glove.jpg
 excerpt: The history of a Rust testing framework. From beginning to end.
+order: 2
 ---
 
 # The Life & Death of Rust Catch
@@ -20,58 +21,52 @@ This is the story of how I ended up writing a Rust unit testing framework and wh
 
 Over Christmas 2018 I was working on a Gameboy Emulator using Rust ([Repo link](https://www.github.com/guydunton/rust-gb)). I was writing all code with unit tests and I found myself getting frustrated how bad my tests were. For example:
 
-{% highlight rust %}
+```rust
+#[test]
+fn load8_instructions() {
+    {
+        // LD (HL-) A
+        let mut gb = Gameboy::new(vec![0x32, 0x00]);
+        gb.set_register_16(RegisterLabel16::HL, 0x0001);
+        gb.set_register_8(RegisterLabel8::A, 0x01);
+        let cycles = gb.step_once();
 
-    #[test]
-    fn load8_instructions() {
-
-        {
-            // LD (HL-) A
-            let mut gb = Gameboy::new(vec![0x32, 0x00]);
-            gb.set_register_16(RegisterLabel16::HL, 0x0001);
-            gb.set_register_8(RegisterLabel8::A, 0x01);
-            let cycles = gb.step_once();
-
-            assert_eq!(gb.get_register_16(RegisterLabel16::HL), 0x0000);
-            assert_eq!(gb.get_memory_at(1), 0x01);
-            assert_eq!(gb.get_register_16(RegisterLabel16::ProgramCounter), 0x0001);
-            assert_eq!(cycles, 8);
-        }
-
-        // a local function to test a register
-        let ld8_test = |byte_code, register| {
-            let mut gb = Gameboy::new(vec![byte_code, 0x01]);
-            let _ = gb.step_once();
-            assert_eq!(gb.get_register_8(register), 0x01);
-            assert_eq!(gb.get_register_16(RegisterLabel16::ProgramCounter), 0x02);
-        };
-
-        // LD C d8
-        ld8_test(0x0E, RegisterLabel8::C);
-
-        // LD D d8
-        ld8_test(0x16, RegisterLabel8::D);
-
-        // This test went on for another 40 LOC btw ...
-
+        assert_eq!(gb.get_register_16(RegisterLabel16::HL), 0x0000);
+        assert_eq!(gb.get_memory_at(1), 0x01);
+        assert_eq!(gb.get_register_16(RegisterLabel16::ProgramCounter), 0x0001);
+        assert_eq!(cycles, 8);
     }
 
-{% endhighlight %}
+    // a local function to test a register
+    let ld8_test = |byte_code, register| {
+        let mut gb = Gameboy::new(vec![byte_code, 0x01]);
+        let _ = gb.step_once();
+        assert_eq!(gb.get_register_8(register), 0x01);
+        assert_eq!(gb.get_register_16(RegisterLabel16::ProgramCounter), 0x02);
+    };
+
+    // LD C d8
+    ld8_test(0x0E, RegisterLabel8::C);
+
+    // LD D d8
+    ld8_test(0x16, RegisterLabel8::D);
+
+    // This test went on for another 40 LOC btw ...
+}
+```
 
 There are several things that I don't like with this:
 
 1. The name `load8_instructions` is not descriptive.
-2. I've tried to create an abstraction (with `ld8_test`) to make test writing easier but hadn't applied it consistently.
+2. I've tried to create an abstraction (with _ld8_test_) to make test writing easier but hadn't applied it consistently.
 3. When the test fails you don't get anything helpful to track down what went wrong. Instead you get something like the following:
 
-{% highlight shell %}
-
-    ---- gameboy::tests::load8_test::load8_test::load8_instructions stdout ----
-    thread 'gameboy::tests::load8_test::load8_test::load8_instructions' panicked at 'assertion failed: `(left == right)`
-    left: `0`,
-    right: `1`', src/gameboy/tests/load8_test.rs:25:13
-
-{% endhighlight %}
+```
+---- gameboy::tests::load8_test::load8_test::load8_instructions stdout ----
+thread 'gameboy::tests::load8_test::load8_test::load8_instructions' panicked at 'assertion failed: `(left == right)`
+left: `0`,
+right: `1`', src/gameboy/tests/load8_test.rs:25:13
+```
 
 I felt that if I had a more opinionated testing framework I would be forced to write tests which were more more specific with clearer error messages. I had a quick look around but couldn't find anything that would solve all my problems so I set out to write my own testing framework. After all, _how hard could it be?_
 
@@ -79,28 +74,26 @@ I felt that if I had a more opinionated testing framework I would be forced to w
 
 Rust Catch was the testing framework that I came up with. It's based on the C++ testing framework [Catch 2](https://github.com/catchorg/Catch2) and it allowed me to write tests like this:
 
-{% highlight rust %}
+```rust
+tests! {
+    // Tests get a nice name
+    test("vec capacity change appropriately") {
 
-    tests! {
-        // Tests get a nice name
-        test("vec capacity change appropriately") {
+        // This variable is re-initialized for each section
+        let mut vec = vec![1, 2, 3];
 
-            // This variable is re-initialized for each section
-            let mut vec = vec![1, 2, 3];
+        section("push increases capacity") {
+            vec.push(4);
+            assert_eq!(vec.capacity(), 4);
+        }
 
-            section("push increases capacity") {
-                vec.push(4);
-                assert_eq!(vec.capacity(), 4);
-            }
-
-            section("pop leaves capacity same size") {
-                vec.pop();
-                assert_eq!(vec.capacity(), 3);
-            }
+        section("pop leaves capacity same size") {
+            vec.pop();
+            assert_eq!(vec.capacity(), 3);
         }
     }
-
-{% endhighlight %}
+}
+```
 
 This solves many of the problems from the previous example:
 
@@ -118,26 +111,22 @@ This solves many of the problems from the previous example:
 
 Rust Catch doesn't use familiar Rust syntax and so to get it to work involves diving into a relatively new Rust feature: [**Procedural Macros**](https://doc.rust-lang.org/reference/procedural-macros.html#function-like-procedural-macros). These macros essentially re-write the code within "`test! { ... }`" into the standard rust tests. For example:
 
-{% highlight rust %}
-
-    tests! {
-        test("Some interesting test title") {
-            assert_eq!(1, 1);
-        }
+```rust
+tests! {
+    test("Some interesting test title") {
+        assert_eq!(1, 1);
     }
-
-{% endhighlight %}
+}
+```
 
 becomes:
 
-{% highlight rust %}
-
-    #[test]
-    fn Some_interesting_test_title() {
-        assert_eq!(1, 1);
-    }
-
-{% endhighlight %}
+```rust
+#[test]
+fn Some_interesting_test_title() {
+    assert_eq!(1, 1);
+}
+```
 
 For more information about how this works see the [repo readme](https://github.com/guydunton/rust-catch/blob/master/README.md#solution).
 
@@ -157,31 +146,29 @@ It 7 seconds to clean build Rust catch which isn't necessarily the end of the wo
 
 ### I wasn't using sections
 
-Sections were an interesting feature from Rust Catch. They allow you to re-use code between tests without having to do anything special. In my opinion they are really intuitive and superior to [fixtures from JUnit](https://github.com/junit-team/junit4/wiki/Test-fixtures) or any `beforeEach`/`afterEach` functions common in many [Javascript frameworks](https://jestjs.io/docs/en/setup-teardown#repeating-setup-for-many-tests).
+Sections were an interesting feature from Rust Catch. They allow you to re-use code between tests without having to do anything special. In my opinion they are really intuitive and superior to [fixtures from JUnit](https://github.com/junit-team/junit4/wiki/Test-fixtures) or any _beforeEach_/_afterEach_ functions common in many [Javascript frameworks](https://jestjs.io/docs/en/setup-teardown#repeating-setup-for-many-tests).
 
 The main problem was that I didn't really use them. When writing the Rust ray tracer (which I wrote after the emulator) I found I didn't use sections at all. I noticed this and went back to look at my use of sections in Rust-GB and found this:
 
-{% highlight rust %}
+```rust
+test("Flag tests") {
+    // Would copying and pasting this line have been so bad?
+    let mut gb = Gameboy::new(vec![0xFE, 0x03]);
 
-    test("Flag tests") {
-        // Would copying and pasting this line have been so bad?
-        let mut gb = Gameboy::new(vec![0xFE, 0x03]);
+    section("Z flag is set if result is 0") {
+        gb.set_register_8(RegisterLabel8::A, 0x03);
+        let _ = gb.step_once();
 
-        section("Z flag is set if result is 0") {
-            gb.set_register_8(RegisterLabel8::A, 0x03);
-            let _ = gb.step_once();
-
-            assert_eq!(gb.get_flag(Flags::Z), true);
-        }
-
-        section("Set the C flag if the value is greater than 0") {
-            gb.set_register_8(RegisterLabel8::A, 0x01);
-            gb.step_once();
-            assert_eq!(gb.get_flag(Flags::C), true);
-        }
+        assert_eq!(gb.get_flag(Flags::Z), true);
     }
 
-{% endhighlight %}
+    section("Set the C flag if the value is greater than 0") {
+        gb.set_register_8(RegisterLabel8::A, 0x01);
+        gb.step_once();
+        assert_eq!(gb.get_flag(Flags::C), true);
+    }
+}
+```
 
 It turns out that I'd really used sections to split tests and not to share code at all. I was starting to see that I wasn't getting much value from my framework as I'd hoped.
 
@@ -203,16 +190,14 @@ The main thing I enjoyed from Rust Catch was being able to specify my test names
 
 Going forwards I'm going to keep writing my tests with descriptive names I will just be converting the names into proper functions. For example:
 
-{% highlight rust %}
+```rust
+test("colors can be multiplied together") {}
 
-    test("colors can be multiplied together") {}
+// Becomes
 
-    // Becomes
-
-    #[test]
-    fn colors_can_be_multiplied_together() {}
-
-{% endhighlight %}
+#[test]
+fn colors_can_be_multiplied_together() {}
+```
 
 ### 2. Fixtures aren't important, abstractions are.
 
