@@ -58,7 +58,7 @@ blockquote {
 }
 
 code {
-  overflow-x: scroll;
+  overflow-x: auto;
   margin: 0;
   display: block;
 }
