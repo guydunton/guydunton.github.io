@@ -1,47 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="/styles/main.css" type="text/css">
-    <link rel="stylesheet" href="/styles/syntax.css" type="text/css">
-</head>
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/syntax.css" type="text/css" />
+  </head>
 
-<body>
+  <body>
     <header id="main-header">
-        <div class="container">
-            <h1>
-                <a href="/">Guy Dunton</a>
-            </h1>
-        </div>
+      <div class="container">
+        <h1>
+          <a href="/">Guy Dunton</a>
+        </h1>
+      </div>
     </header>
     <nav id="nav-bar">
-        <div class="container">
-            <ul>
-                <li>
-                    <a class="link-button" href="/articles">Articles</a>
-                </li>
-                <li>
-                    <a class="link-button" href="/projects">Projects</a>
-                </li>
-                <li>
-                    <a class="link-button" href="/blog">Blog</a>
-                </li>
-                <li>
-                    <a class="link-button" href="/about">About</a>
-                </li>
-                <li>
-                    <a class="link-button" href="https:///github.com/guydunton">Github</a>
-                </li>
-            </ul>
-        </div>
+      <div class="container">
+        <ul>
+          <li>
+            <a class="link-button" href="/">Home</a>
+          </li>
+          <li>
+            <a class="link-button" href="/articles">Articles</a>
+          </li>
+          <li>
+            <a class="link-button" href="/projects">Projects</a>
+          </li>
+          <li>
+            <a class="link-button" href="/about">About</a>
+          </li>
+          <li>
+            <a class="link-button" href="///github.com/guydunton">Github</a>
+          </li>
+        </ul>
+      </div>
     </nav>
-    <div class="container">
-        {{ content }}
-    </div>
-</body>
-
+    <div class="container">{{ content }}</div>
+  </body>
 </html>
