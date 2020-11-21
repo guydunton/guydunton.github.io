@@ -3,7 +3,8 @@ layout: article
 title: Making Old Code Beautiful
 permalink: /articles/old-code-beautiful/
 image: /assets/beautiful_code/puzzle.jpg
-excerpt: Taking old C++ code and applying new techniques to improve it.
+excerpt: In this article I go through a university project that I wrote in C++ when I barely knew the language. I pick out things that are considered bad practice and refactor them using modern C++11 standard library. I then benchmark the new code against the old to see if performance has been sacrificed in the name of clean code.
+tags: c++,refactoring
 order: 1
 ---
 

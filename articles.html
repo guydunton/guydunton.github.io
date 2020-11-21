@@ -2,12 +2,31 @@
 layout: default
 title: Articles
 ---
-<h2>Articles</h2>
 
-{% assign sorted_articles = site.articles | sort:"order" | reverse %}
-{% for article in sorted_articles %}
-    <hr>
-    <h3>{{ article.title }}. </h3>
-    <p>{{ article.excerpt }}</p>
-    <p><a href="{{ article.url }}"><img class="previewImage" src="{{ article.image }}" alt="{{ article.title }}"><a></p>
-{% endfor %}
+<h2 class="section-header">Articles</h2>
+
+<div class="articles">
+  {% assign sorted_articles = site.articles | sort:"order" | reverse %}
+  <!-- For each article -->
+  {% for article in sorted_articles %}
+  <div class="article">
+    <div class="article__description">
+      <h3>{{ article.title }}.</h3>
+      <p>{{ article.excerpt }}</p>
+    </div>
+    <div class="article__image">
+      <a href="{{ article.url }}"><img src="{{ article.image }}" alt="{{ article.title }}" /></a>
+    </div>
+    <div class="article__tags">
+      Topics
+      <ul>
+        {% assign tags = article.tags | join: " " | split: "," %}
+        <!-- For each tag -->
+        {% for tag in tags %}
+        <li>{{ tag }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endfor %}
+</div>
