@@ -2,7 +2,7 @@
 layout: default
 title: Hybrid Sky
 permalink: /projects/hybrid-sky/
-excerpt: An arcade air combat game built as a group project at university
+excerpt: An arcade air combat game built as a group project at university. Also built using C# & the XNA framework
 order: 1
 ---
 

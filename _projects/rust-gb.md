@@ -2,8 +2,10 @@
 layout: default
 title: Rust GB
 permalink: /projects/rust-gb/
-excerpt: A Gameboy emulator written in Rust
+excerpt: An ongoing project to build a Gameboy emulator in Rust
 order: 6
+img_src: /assets/projects/rust-gb/boot-sequence.png
+img_alt: Rust-gb running the Gameboy bootloader
 published: false
 ---
 

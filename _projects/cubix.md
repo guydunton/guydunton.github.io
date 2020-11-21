@@ -2,7 +2,7 @@
 layout: default
 title: Cubix
 permalink: /projects/cubix/
-excerpt: An interactive art piece, displaying my course logo
+excerpt: An interactive art piece, displaying my course logo. Built using C# & The XNA framework. Makes use of deferred shading to display hundreds of point lights
 order: 2
 ---
 

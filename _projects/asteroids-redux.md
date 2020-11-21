@@ -2,7 +2,9 @@
 layout: default
 title: Asteroids Redux
 permalink: /projects/asteroids-redux/
-excerpt: A remake of Asteroids, written in C++
+excerpt: A remake of Asteroids, written using C++ & DirectX 11. Featuring more advanced collisions and physics than the original
+img_src: /assets/projects/asteroids.png
+img_alt: Asteroids Redux running on Windows
 order: 4
 ---
 
@@ -39,10 +41,10 @@ Note that I chose to refactor the code rather than throw it away and start again
 
 These are the bad practices I noticed as I went through the code, as well as how I removed/fixed:
 
-- Singletons & Managers- It seams I really liked singletons at one time. Removing all the hidden dependencies on singletones was a touph job but made all dependencies clearer.
+- Singletons & Managers- It seams I really liked singletons at one time. Removing all the hidden dependencies on singletones was a tough job but made all dependencies clearer.
 - Raw Pointers- Passing raw pointers left a lot of spots that would break at any code change. The QuadTree class in particular used raw pointers to keep track of objects and changing this to smart pointers fixed a lot of use-after-delete bugs.
 - Initialize Functions- I have changed a lot of the classes away from 2 step initialization. There just isn't really a need for it and objects shouldn't be possible to use before they are correctly initialized.
-- Ignoring Language/Standard Library- I had an additinonal dependency on a library called "fast delegate" which I completely removed in favour of lambdas and std::function.
+- Ignoring Language/Standard Library- I had an additional dependency on a library called "fast delegate" which I completely removed in favour of lambdas and std::function.
 
 ### Conclusion
 

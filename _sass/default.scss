@@ -129,6 +129,21 @@ code {
   border: rgba(184, 217, 255, 0.781) 1px solid;
 }
 
+.link:link,
+.link:visited {
+  color: black;
+  text-decoration: none;
+  border-bottom: 1px solid #7696ff;
+  padding-bottom: 1px;
+  transition: color 0.15s, border-bottom 0.15s;
+}
+
+.link:hover,
+.link:active {
+  color: black;
+  border-bottom: 1px solid transparent;
+}
+
 @media only screen and (max-width: 480px) {
   .container {
     width: 90%;

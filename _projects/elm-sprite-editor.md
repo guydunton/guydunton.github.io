@@ -2,7 +2,9 @@
 layout: default
 title: Elm Sprite Editor
 permalink: /projects/elm-sprite-editor/
-excerpt: A sprite editor for Gameboy games, written for the web using Elm
+excerpt: A sprite editor for Gameboy games, written for the web using Elm. Displays the GBZ80 hex codes for a sprite
+img_src: /assets/projects/sprite-editor/gb-sprite-editor.png
+img_alt: Creeper face on the gb sprite editor
 order: 5
 ---
 
@@ -25,7 +27,7 @@ This means that there are 4 possible colors for each pixel:
 
 For example:
 
-![A sprite from Pokemon Red]({{ "/assets/projects/poke_sprite.png" }})
+![A sprite from Pokemon Red]({{ "/assets/projects/sprite-editor/poke_sprite.png" }})
 
 The above sprite from Pokemon Red is of a table made of 8 separate tiles. I have added a box around a single one of the tiles. The top row of this sprite is 7 black pixels followed by 1 white pixel.
 
