@@ -3,8 +3,9 @@ layout: default
 title: Elm Sprite Editor
 permalink: /projects/elm-sprite-editor/
 excerpt: A sprite editor for Gameboy games, written for the web using Elm
-order: 1
+order: 5
 ---
+
 ## Elm Sprite Editor
 
 While working on some Gameboy assembly code I found that encoding sprite image data by hand was very time consuming so I created the gameboy sprite editor to help. The project is written for browsers using Elm and it features a continous integration and deployment pipeline.
@@ -16,16 +17,17 @@ Try it out <a href="https://www.guydunton.com/gb-sprite-editor">here</a>. Source
 Gameboy games are made up of 8x8 tiles with each pixel made from 2 bits.
 
 This means that there are 4 possible colors for each pixel:
-* 00 - White
-* 01 - Light grey
-* 10 - Dark grey
-* 11 - Black
+
+- 00 - White
+- 01 - Light grey
+- 10 - Dark grey
+- 11 - Black
 
 For example:
 
 ![A sprite from Pokemon Red]({{ "/assets/projects/poke_sprite.png" }})
 
-The above sprite from Pokemon Red is of a table made of 8 separate tiles. I have added a box around a single one of the tiles. The top row of this sprite is 7 black pixels followed by 1 white pixel. 
+The above sprite from Pokemon Red is of a table made of 8 separate tiles. I have added a box around a single one of the tiles. The top row of this sprite is 7 black pixels followed by 1 white pixel.
 
 <table>
     <tr>
@@ -69,10 +71,10 @@ or
 
 <br/>
 
-| Binary | Decimal | Hex |
-|----|----|----|
-| 0110,0111 | 6,7 | $67 |
-| 1001,1000 | 9,8 | $98 |
+| Binary    | Decimal | Hex  |
+| --------- | ------- | ---- |
+| 0110,0111 | 6,7     | \$67 |
+| 1001,1000 | 9,8     | \$98 |
 
 The hexidecimal required for this row in GBZ80 is: $67, $98
 
@@ -82,7 +84,7 @@ I chose to write the sprite editor in Elm because I wanted to be able to use it 
 
 The process of writing the code was extremely fast. The process shown above is very easy to sketch out with Elm type signatures with the most awkward part being the conversion between binary and hex (Elm doesn't have any build in hex support).
 
-### The Result 
+### The Result
 
 The part that I enjoyed the most about this project was setting up the continuous integration/deployment pipeline. Whenever code is commited into a branch; a travis server checks out the code compiles it and runs unit tests on it. Even better, following code being merged into master, travis again builds the code and commits it to this website! It's satisfying to make a change to the code and within minutes see it reflected in the live site.
 

@@ -2,11 +2,15 @@
 
 This is my portfolio website
 
-## To Build
-1. Install some version of ruby
-2. Checkout the code
-3. Run command ```bundle install --path vendor/bundle```
-4. Build the site ```bundle exec jekyll serve```
+## To run locally
+
+The project is built locally using Docker Compose:
+
+```bash
+docker-compose up --build
+```
+
+The website can then be viewed at http://localhost:4000
 
 ## Markdown Guide
 
