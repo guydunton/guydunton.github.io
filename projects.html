@@ -6,29 +6,27 @@ title: Projects
 <section>
   <h2>Projects</h2>
 
-  <div class="projects">
-    {% assign sorted_pages = site.projects | sort:"order" | reverse %}
-    <!-- For each project -->
-    {% for project in sorted_pages %}
-    <div class="project-item">
-      <div class="project-item__contents">
-        <div class="project-item__contents__description">
-          <h3>{{ project.title }}</h3>
-          <p>{{ project.excerpt }}.</p>
+  {% assign sorted_pages = site.projects | sort:"order" | reverse %}
+  <!-- For each project -->
+  {% for project in sorted_pages %}
+  <div class="project-item">
+    <div class="project-item__contents">
+      <div class="project-item__contents__description">
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.excerpt }}.</p>
 
-          <p>
-            <a class="link" href="{{ project.url }}">More information</a>
-          </p>
-        </div>
-
-        {% if project.img_src and project.img_alt %}
-        <div class="project-item__contents__image">
-          <img src="{{ project.img_src }}" alt="{{ project.img_alt }}" />
-        </div>
-        {% endif %}
+        <p>
+          <a class="link" href="{{ project.url }}">More information</a>
+        </p>
       </div>
-    </div>
 
-    {% endfor %}
+      {% if project.img_src and project.img_alt %}
+      <div class="project-item__contents__image">
+        <img src="{{ project.img_src }}" alt="{{ project.img_alt }}" />
+      </div>
+      {% endif %}
+    </div>
   </div>
+
+  {% endfor %}
 </section>
