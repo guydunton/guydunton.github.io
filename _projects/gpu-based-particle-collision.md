@@ -15,4 +15,6 @@ The subject of my university dissertation was GPU based particle system collisio
 - Also includes a particle system implemented in more conventional C++ code to test performance against the GPU implementation. This CPU implementation features instancing to reduce the render time of all the particles in order to make the comparison fairer.
 - The program runs with an uncapped framerate, allowing the performance of both systems to be judged based on their maximum frames per second.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/NnJ7KibU8MA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<a href="https://youtu.be/NnJ7KibU8MA" target="_blank">
+![Youtube video of gpu particles](/assets/youtube/gpu_particles.png)
+</a>

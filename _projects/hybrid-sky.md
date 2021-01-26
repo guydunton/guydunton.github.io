@@ -18,6 +18,8 @@ Hybrid Sky is a game created as a group based university project. It is an arcad
 - I created the code for the player model to be controlled and for the duel flight modes. This involved a lot of finding controls that 'felt right' and creating rules for the fixed wing flight and a vtol flight model. The fixed wing used rules based partially on real world physics to give the player lift and thrust while the vtol mode used more abstract methods to simulate helicopter flight, such as alternative pivot points for rotation and a vertical boost to give thrust.
 - I designed and wrote a large portion of the particle systems used to indicate player damage and the waterfall effects. This system was created with ease of use and customizability in mind so that other programmers on the team would find it easy to create particle effects and place them at events or in the world, without having to change the core of the particle system code.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/wBsGQinzkog" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<a href="https://youtu.be/wBsGQinzkog" target="_blank">
+![Youtube video of Hybrid sky](/assets/youtube/hybrid_sky.png)
+</a>
 
 Another big thanks to Tom, Pete and Mike, with whom I had enormous fun making this game.

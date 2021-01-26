@@ -15,6 +15,8 @@ An interactive exhibit piece created during university, Cubix was written in C# 
 - Audio code monitors the total motion of all the cubes in order to calculate the volumes of multiple chime tracks.
 - A simple script state machine operates to determine when the grid has been completed. It then passes a wave through the grid allowing the lit cubes to be turned off and the input to start again.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/J7V02FZv3tA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<a href="https://youtu.be/J7V02FZv3tA" target="_blank">
+![Youtube video of Cubix](/assets/youtube/cubix.png)
+</a>
 
 A huge thanks to Tom, Pete and Mike for making this project with me.
