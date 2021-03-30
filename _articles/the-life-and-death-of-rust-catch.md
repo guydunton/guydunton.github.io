@@ -3,7 +3,6 @@ layout: article
 title: The Life & Death of Rust Catch
 permalink: /articles/life-and-death-of-rust-catch/
 image: /assets/life_and_death_of_rust_catch/baseball_ball_glove.jpg
-excerpt: The history of a Rust testing framework. From beginning to end.
 excerpt: Perhaps it's a right of passage to create a unit testing library. In this article I track the history of the unit testing library I wrote in Rust. From it's initial inception to it's ultimate end.
 tags: rust,testing,unit testing
 order: 2
